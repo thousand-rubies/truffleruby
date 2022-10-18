@@ -28,7 +28,7 @@ LIBTRUFFLERUBY = cext/libtruffleruby.$(SOEXT)
 BASIC_EXTCONF_DEPS := Makefile $(SPAWN_HELPER) $(TRUFFLE_POSIX) $(RUBY_HEADERS) $(ABI_VERSION) $(RBCONFIG) $(MKMF)
 # C extensions link against libtruffleruby (and might do have_func() checks against it), so it needs to be there before.
 # However, if libtruffleruby is recompiled, there is no need to rebuild C extensions, so it's a order-only-prerequisite.
-EXTCONF_DEPS := $(BASIC_EXTCONF_DEPS) | $(LIBTRUFFLERUBY)
+EXTCONF_DEPS := $(BASIC_EXTCONF_DEPS) $(LIBTRUFFLERUBY)
 
 IF_EXTCONF_FAIL := ( echo "`pwd`/extconf.rb failed:" 1>&2 && cat mkmf.log && false )
 
